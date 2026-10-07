@@ -1,0 +1,5 @@
+model,model_label,cv_mae,cv_rmse,cv_mape_pct,cv_mase
+holt_winters,Holt-Winters,990.878,1428.069,368.478,1.147
+sarima,SARIMA,1005.512,1505.883,396.052,1.162
+seasonal_naive,Seasonal naive (7-day),1540.356,2103.959,373.107,1.769
+drift,Drift,1691.586,1934.421,272.115,1.961

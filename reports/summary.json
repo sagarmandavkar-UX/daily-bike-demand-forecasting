@@ -1,0 +1,59 @@
+{
+  "question": "Can historical daily bike rentals predict demand for the next 30 days?",
+  "dataset": {
+    "rows": 731,
+    "columns": 16,
+    "date_start": "2011-01-01",
+    "date_end": "2012-12-31",
+    "unique_days": 731,
+    "missing_values": 0,
+    "duplicate_dates": 0,
+    "minimum_demand": 22,
+    "maximum_demand": 8714,
+    "mean_daily_demand": 4504.35,
+    "complete_daily_calendar": true,
+    "target_reconciles_to_components": true
+  },
+  "forecast_horizon_days": 30,
+  "validation": {
+    "method": "3-fold expanding-window validation plus an untouched final 30-day holdout",
+    "selected_model": "holt_winters",
+    "selected_model_label": "Holt-Winters",
+    "cv_mae": 990.878
+  },
+  "holdout_selected_model": {
+    "mae": 1480.163,
+    "rmse": 1932.709,
+    "mape_pct": 101.813,
+    "wape_pct": 37.466,
+    "mase": 1.617,
+    "bias": 772.601
+  },
+  "holdout_seasonal_naive": {
+    "mae": 1527.567,
+    "rmse": 2054.837,
+    "mape_pct": 102.417,
+    "wape_pct": 38.665,
+    "mase": 1.669,
+    "bias": 687.9
+  },
+  "mae_improvement_vs_seasonal_naive_pct": 3.1,
+  "deployment_gate": "NO-GO",
+  "deployment_rule": "GO only if a non-baseline model improves holdout MAE by at least 5% and holdout MASE is below 1.0",
+  "stationarity": {
+    "adf_statistic": -1.877,
+    "adf_pvalue": 0.3427,
+    "interpretation": "Do not reject a unit root at 5%"
+  },
+  "future_forecast": {
+    "start": "2013-01-01",
+    "end": "2013-01-30",
+    "mean_daily_demand": 2234.4,
+    "minimum_daily_demand": 1780.6,
+    "maximum_daily_demand": 2455.7,
+    "total_demand": 67032,
+    "interval_note": "95% empirical residual interval; it reflects historical forecast errors, not every source of future uncertainty"
+  },
+  "decision_use": "Use the forecast as a planning baseline for fleet rebalancing, maintenance staffing, and capacity; preserve an uncertainty buffer and refresh as new demand arrives.",
+  "scope_note": "This is a univariate forecast using rental history only. Weather, policy, pricing, and event scenarios are not known for the future horizon."
+}
